@@ -1,0 +1,42 @@
+<!-- Cette page contient les informations d'une saison d'une série : image, numéro de saison, nombre d'épisodes ...
+ Elle est reliée à la page série correspondante et contient les sous-pages épisodes-->
+
+
+{% extends "base.html" %}
+
+{% block content %}
+  <section id="one">
+      <div class="inner">
+          <center>
+                <header>
+              <h2>Saison {{ saison.id_saison }}</h2>
+                  <p><a href="{{ url_for('serie', id_serie = serie.id_serie )}}"> <FONT COLOR=#717171 > {{ serie.name }}</FONT></a></p>
+                </header>
+
+          <div class="image">
+              <img src="{{ saison.url_picture_season }}" alt="" />
+          </div>
+          </center>
+          <br />
+          <h5>Résumé :</h5> <blockquote>{{ serie.summary }}</blockquote>
+
+          <br />
+
+          <h3>Episodes</h3>
+          <ul class="alt">
+              {% for episode in episodes %}
+                <li>
+                    {% include 'episode.html' %}
+                </li>
+              {% endfor %}
+            </ul>
+
+
+      </div>
+  </section>
+
+{% endblock %}
+
+
+
+

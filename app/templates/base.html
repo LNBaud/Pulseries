@@ -1,0 +1,40 @@
+<!-- Page mère de notre site, contenant notamment la barre de navigation. Toutes les autres pages du sites en sont des
+extensions.-->
+
+
+<head>
+	<title>Pulseries</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="{{url_for('.static', filename='main.css')}}" />
+</head>
+<body>
+
+<!-- Header -->
+	<header id="header">
+		<div class="inner">
+			<a href="{{url_for('index')}}" class="logo">pulseries</a>
+			<nav id="nav">
+				<a href="{{url_for('index')}}">Home</a>
+                {% if current_user.is_anonymous %}
+				<a href="{{url_for('register')}}">Inscription</a>
+				<a href="{{ url_for('login') }}">Connexion</a>
+                {% else %}
+                    {% set new_notifications = current_user.new_notifications() %}
+                    {% if new_notifications %}
+                        <a href="{{ url_for('notifications') }}"><strong>Notifications ({{ new_notifications }})</strong></a>
+                    {% else %}
+                        <a href="{{ url_for('notifications') }}">Notifications</a>
+                    {% endif %}
+				<a href="{{ url_for('profile') }}">Profil</a>
+				<a href="{{ url_for('logout') }}">Déconnexion</a>
+                {% endif %}
+			</nav>
+		</div>
+	</header>
+
+{% block content %}
+
+{% endblock %}
+
+</body>

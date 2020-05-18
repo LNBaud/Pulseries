@@ -1,0 +1,22 @@
+<!-- Page de notifications de notre site-->
+
+
+{% extends "base.html" %}
+
+{% block content %}
+   <section id="one">
+    <div class="inner">
+        <header>
+            <h2>Notifications</h2>
+        </header>
+        <ul class="alt">
+            <li>Tes notifications :</li>
+            {% for notif_serie in notif_serie %}
+                <li><strong>{{ notif_serie[0].timestamp.strftime("%d-%m-%Y %H:%M") }} : </strong>Nouvel épisode {{ notif_serie[0].episode.ep_name }} de {{ notif_serie[1].name }} à venir le {{notif_serie[0].episode.ep_date.strftime("%d-%m-%Y") }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    </section>
+
+
+{% endblock %}

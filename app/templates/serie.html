@@ -1,0 +1,49 @@
+<!-- Cette page contient les informations d'une série : image, nom de la série, résumé ...
+ Elle contient les sous-pages aperçu-saison qui la relie aux pages saisons correspondantes-->
+
+{% extends "base.html" %}
+
+{% block content %}
+  <section id="one">
+      <div class="inner">
+          <center>
+              <header>
+              <h1>{{ serie.name }}</h1>
+              <p>{{ serie.genre }}</p>
+              </header>
+              <ul class="actions">
+                  {% if current_user.is_following(serie) %}
+                  <li><a href="{{url_for('unfollow_serie', id_serie=serie.id_serie)}}" class="button alt">Se désabonner</a></li>
+                  {% else %}
+                  <li><a href="{{url_for('follow_serie', id_serie=serie.id_serie)}}" class="button alt">S'abonner</a></li>
+                  {% endif %}
+              </ul>
+          </center>
+      <div id="col_gauche">
+          <br />
+          <div class="image left">
+              <img src={{ serie.url_picture_tvshow }} alt="" />
+          </div>
+      </div>
+      <div id="col_droite">
+          <br />
+          <h5>Réalisateur :</h5> <p>{{ serie.realisateur }}</p>
+          <h5>Acteurs principaux :</h5> <p>{{ serie.name_act }}</p>
+          <h5>Nombre de saisons :</h5> <p>{{ serie.nb_season }}</p>
+          <h5>Première diffusion :</h5> <p>{{ serie.start_date }}</p>
+      </div>
+
+          <h5>Résumé :</h5> <blockquote>{{ serie.summary }}</blockquote>
+          <br />
+          <h3>Saisons</h3>
+          <ul class="alt">
+              {% for saison in saisons %}
+                <li>
+                    {% include 'apercu_saison.html' %}
+                </li>
+              {% endfor %}
+            </ul>
+      </div>
+  </section>
+
+{% endblock %}

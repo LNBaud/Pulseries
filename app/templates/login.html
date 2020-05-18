@@ -1,0 +1,26 @@
+<!-- Page de connexion de notre site-->
+
+
+{% extends "base.html" %}
+
+{% block content %}
+    <section id="one">
+        <div class="inner">
+    <center><h1>Connexion</h1>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.username.label }}
+            {{ form.username(size=32) }}
+        </p>
+        <p>
+            {{ form.password.label }}
+            {{ form.password(size=32) }}
+        </p>
+        <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
+        <p>{{ form.submit() }}</p>
+    </form>
+        <p><a href="{{ url_for('register') }}">Pas encore inscrit ? </a><br/></p></center>
+        </div>
+     </section>
+{% endblock %}

@@ -1,0 +1,14 @@
+<!-- Cette sous-page contient l'aperçu d'un épisode d'une saison: numéro, nom, résumé
+Elle est incluse dans la page saison de la série correspondante-->
+
+
+<header>
+<h5> Episode N°{{episode.id_ep}} : {{ episode.ep_name }}</h5>
+<p>
+Date de diffusion : {{ episode.ep_date.strftime("%d-%m-%Y" )}}
+</p>
+</header>
+
+<p>
+    {{ episode.ep_sum }}
+</p>

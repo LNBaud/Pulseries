@@ -1,0 +1,9 @@
+<!-- Cette sous-page contient l'aperçu d'une série : image et nom. Elle est reliée à la page de la série associée.
+ Elle est incluse dans la page des resultats de recherche.-->
+
+<span class="image">
+    <a href="{{ url_for('serie', id_serie = serie.id_serie ) }}">
+        <img src="{{ serie.url_picture_tvshow }}" /> <center><FONT COLOR=#717171 >{{serie.name}}</FONT></center>
+    </a>
+
+</span>

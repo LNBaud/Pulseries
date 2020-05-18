@@ -1,0 +1,36 @@
+<!-- Page de profil de notre site, pour chaque utilisateur. Elle contient une présentation des différentes séries
+auxquels l'utilisateur est abonné, avec la possibilité de se désabonner ou d'avoir plus de détails sur la série -->
+
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <section id="one">
+    <div class="inner">
+        <center><header>
+            <h2>{{ current_user.username }}</h2>
+            <p>Vos séries préférées</p>
+        </header>
+        <ul class="actions">
+            <li><a href="{{url_for('refresh_notifications')}}" class="button alt">Test nouvelles notifications</a></li>
+        </ul></center>
+        <ul class="alt">
+            {% for serie in series %}
+                <li>
+                    <header>
+                        <a href="{{url_for('serie', id_serie=serie.id_serie)}}"><h3>{{ serie.name }}</h3></a>
+                        <p>{{ serie.genre }}</p>
+                    </header>
+                    <p><span class="image small-left"><img src={{ serie.url_picture_tvshow }} alt="" width="10%"/></span>{{ serie.summary }}<br/></p>
+                <ul class="actions">
+                    <li><a href="{{url_for('serie', id_serie=serie.id_serie)}}" class="button alt">Détails</a></li>
+                    <li><a href="{{url_for('unfollow_serie_profile', id_serie=serie.id_serie)}}" class="button alt">Se désabonner</a></li>
+                </ul>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    </section>
+
+{% endblock %}

@@ -1,0 +1,92 @@
+<!-- Page d'accueil de notre site. Elle contient une première partie de présentation, une barre de recherche par nom et
+par genre, et 3 propositions de séries aléatoires (ainsi qu'un footer)-->
+
+
+{% extends "base.html" %}
+
+{% block content %}
+    <section id="banner">
+        <div class="inner">
+            <h1>Pulseries : <span>Votre meilleur allié<br />
+                pour suivre vos séries préférées</span></h1>
+            <ul class="actions">
+                <li><a href="{{ url_for('recherche_alphabetique')}}" class="button alt">La liste de nos séries</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- One -->
+    <section id="one">
+        <div class="inner">
+            <header>
+                <h2>Notre Concept</h2>
+            </header>
+            <p>Avec Pulseries, découvrez toujours plus de nouvelles séries, tout en restant à jour dans vos séries favorites ! Oubliez les spoilers, abonnez-vous en un clic à vos séries préférées pour être mis au courant dès qu'un nouvel épisode est sur le point de sortir !
+            </p>
+            <div class="special">
+            <form method='post' action = "{{ url_for('recherche_nominative') }}">
+         <input type = "text" name="nom-serie" placeholder="Nom de série" />
+                <br />
+                <div class="select-wrapper">
+                    <select name="genre" size=1>
+                <option value="Tous" selected> Tous </option>
+                <option value="Action"> Action </option>
+                <option value="Animation"> Animation </option>
+                <option value="venture" > Aventure </option>
+                <option value="Comédie"> Comédie </option>
+                <option value="Crime"> Crime </option>
+                <option value="Documentaire"> Documentaire </option>
+                <option value="Drame"> Drame </option>
+                <option value="Fantastique"> Fantastique</option>
+                <option value="Histoire" > Histoire </option>
+                <option value="Famille"> Jeunesse </option>
+                <option value="Mystère"> Mystère </option>
+                <option value="Science-Fiction"> Science-fiction </option>
+                <option value="Soap"> Soap opéra </option>
+                <option value="Talk"> Talk-Show </option>
+                <option value="Western"> Western </option>
+                    </select>
+                    <br />
+                </div>
+                <center>
+                <input type = "submit" value = "Rechercher une série" />
+                </center>
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Three -->
+    <section id="three">
+        <div class="inner">
+            {% for serie in series %}
+                <article>
+                    <center>
+                        <div class="content">
+                            <div class="image fit">
+                                <img src="{{ serie.url_picture_tvshow }}" alt=""/>
+                            </div>
+                            <header>
+                                <h3 align="center"> {{serie.name}}</h3>
+                                <p align="center">{{ serie.genre}}</p>
+                            </header>
+                            <ul class="actions">
+                                <li><a href="{{url_for('serie', id_serie= serie.id_serie)}}" class="button alt">Détails</a></li>
+                            </ul>
+                        </div>
+                    </center>
+                </article>
+            {% endfor %}
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+	<section id="footer">
+		<div class="copyright">
+			Pulseries - 2018
+		</div>
+	</section>
+
+{% endblock %}

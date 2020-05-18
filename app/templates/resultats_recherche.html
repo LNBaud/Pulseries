@@ -1,0 +1,23 @@
+<!-- Page affichant les résultats d'une recherche, qui peut être alphabétique, par nom et/ou par genre.-->
+
+
+{% extends "base.html" %}
+
+{% block content %}
+    <br/>
+    <center>
+    {% if query %}
+    <h2> Résultats pour "{{ query }}" :</h2>
+    {% else %}
+    <h2> Liste des séries disponibles :</h2>
+    {% endif %}
+    {% if resultats %}
+         {% for serie in resultats %}
+             {% include 'apercu_serie.html' %}
+         {% endfor %}
+    {% else %}
+        <br/>
+            <p> Votre recherche n'a pas abouti, aucun résultat ne correspond à "{{ query }}".</p>
+    {% endif %}
+    </center>
+{% endblock %}

@@ -1,0 +1,13 @@
+<!-- Cette sous-page contient l'aperçu d'une saison d'une série : image, numéro de saison, nombre d'épisodes, et
+est reliée à la page saison
+ Elle est incluse dans la page série correspondante-->
+
+<span class="image small-left"><img src={{ saison.url_picture_season }} alt="" width="10%"/></span>
+<header>
+   <h3><a href="{{url_for('saison', id_serie=serie.id_serie, id_saison=saison.id_saison)}}">Saison {{ saison.id_saison }}
+   </a>
+   </h3>
+    <p>{{ serie.name }}</p>
+</header>
+<p>Nombre d'épisodes : {{ saison.nb_episode }}</p>
+
